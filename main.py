@@ -1,7 +1,7 @@
 from urllib.request import urlopen
 from fastapi import FastAPI
 from fastapi_health import health
-from datetime import datetime
+from now import now
 import psutil, os, socket
 
 
@@ -20,7 +20,7 @@ def status():
     ip_address = socket.gethostbyname(socket.gethostname())
     memory = process.memory_percent()
     cpu = process.cpu_percent()
-    current_datetime = datetime.now()
+    current_datetime = now()
 
     code = urlopen("http://localhost:8000").getcode()
 
