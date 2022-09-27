@@ -81,3 +81,7 @@ The terraform directory contains 2 main sub-directories:
             - terraform init
             - terraform plan
             - terraform apply
+
+    Open a browser and put "http://<ec2 instance public-ip>:8000/status"
+
+    Finish.
