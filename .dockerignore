@@ -6,3 +6,6 @@ Dockerfile
 Makefile
 README.md
 LICENSE
+ansible/
+terraform/
+deploy/

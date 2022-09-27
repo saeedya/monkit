@@ -20,4 +20,4 @@ ARG 	GIT_TAG="notag"
 
 LABEL   gitCommit=$GIT_COMMIT   gitTag=$GIT_TAG
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "monkit.main:app", "--host", "0.0.0.0", "--port", "8000"]
