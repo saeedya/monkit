@@ -24,6 +24,7 @@ have the following endpoints:
 # How to setup the application?
 
     - git clone https://github.com/saeedya/monkit.git
+    - cd monkit
     - python3 -m venv venv
     - source venv/bin/activate
     - pip install -U pip
