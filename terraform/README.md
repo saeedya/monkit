@@ -37,6 +37,15 @@ Apply: On approval, Terraform performs the proposed operations in the correct or
 4- execute below command to verify the version:
     ex: terraform version
 
+# How to use and deploy?
+
+Pre-requirements:
+    - AWS account
+    - IAM user with admin policy
+    - Access_key and Secret key(set them in your shell as environment variables)
+        export AWS_ACCESS_KEY_ID="XXXXXXXXXXXXXXXXXXXXX"
+        export AWS_SECRET_ACCESS_KEY="YYYYYYYYYYYYYYYYYYYYY"   
+
 The terraform directory contains 2 main sub-directories:
     
     - aws/infra-iac-codes: It will create an EC2 instance "t2.micro" along with all related services like:
@@ -53,7 +62,9 @@ The terraform directory contains 2 main sub-directories:
             - terraform init
             - terraform plan
             - terraform apply: this command output will show the public-ip of the EC2 instance.Use this in your ansible 
-              playbook and also section below. 
+              playbook and also section below.
+
+    NOTE: Before below section go to Ansible directory and follow the README.md
 
     - docker: It will deploy the following service in the right order:
         a. Deploying a docker registry into the above created EC2 machine
@@ -63,5 +74,10 @@ The terraform directory contains 2 main sub-directories:
         For deploy this you need some changes:
 
         1- Copy "ssh.key" file from last terraform deploy into "terraform/docker" folder.
-        2- 
+        2- open providers.tf file and insert EC2 instance public-ip --> line 7
 
+        Now execute below command:
+            - terraform fmt
+            - terraform init
+            - terraform plan
+            - terraform apply
