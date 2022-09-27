@@ -43,7 +43,9 @@ Pre-requirements:
     - AWS account
     - IAM user with admin policy
     - Access_key and Secret key(set them in your shell as environment variables)
+
         export AWS_ACCESS_KEY_ID="XXXXXXXXXXXXXXXXXXXXX"
+        
         export AWS_SECRET_ACCESS_KEY="YYYYYYYYYYYYYYYYYYYYY"   
 
 The terraform directory contains 2 main sub-directories:
