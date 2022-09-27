@@ -40,8 +40,11 @@ Apply: On approval, Terraform performs the proposed operations in the correct or
 # How to use and deploy?
 
 Pre-requirements:
+
     - AWS account
+    
     - IAM user with admin policy
+    
     - Access_key and Secret key(set them in your shell as environment variables)
 
         export AWS_ACCESS_KEY_ID="XXXXXXXXXXXXXXXXXXXXX"
