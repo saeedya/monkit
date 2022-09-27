@@ -10,10 +10,7 @@ Ansible is a software tool that provides simple but powerful automation for cros
     - pip install -r requirements.txt
     - ansible --version 
 
-Some Notes:
-
-    - Before deploy add "ssh.key" that created in "../terraform/aws/infra-iac-codes" to this folder.
-    - Open inventory.ini file and copy the "EC2 instance public-ip" into metioned part.
+Note: Open inventory.ini file and copy the "EC2 instance public-ip" into metioned part.
 
 # How to deploy?
 
