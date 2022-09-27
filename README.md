@@ -46,7 +46,7 @@ have the following endpoints:
     Now run below command:
         - docker run -itd --name monkit -p 8000:8000 monkit:latest
 
-All the above documents will run on your Desktop machine or laptop. So there will be 3 different
+All the above will run on your Desktop machine or laptop. So there will be 3 different
 parts listed below for deploying on an AWS EC2 instace:
 
     1- "Terraform README.md" - Whit an IaC code in Terraform creating an EC2 instance “t2.micro” 
