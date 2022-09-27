@@ -24,3 +24,32 @@ Apply: On approval, Terraform performs the proposed operations in the correct or
 
 ![alt text](https://content.hashicorp.com/api/assets?product=terraform&version=refs%2Fheads%2Fv1.3&asset=website%2Fimg%2Fdocs%2Fintro-terraform-workflow.png&width=2038&height=1773)
 
+# How to manually install terraform?
+
+1- Download the latest version of terraform https://releases.hashicorp.com/terraform/<terraform_version>/terraform_<terraform_version>_linux_amd64.zip
+
+2- Unzip terraform_<terraform_version>_linux_amd64.zip
+    ex: unzip terraform_1.3.0_linux_amd64.zip
+
+3- copy terraform into "/usr/local/bin"
+    ex: cp terraform /usr/local/bin
+
+4- execute below command to verify the version:
+    ex: terraform version
+
+The terraform directory contains 2 main dub-directories:
+    
+    - aws/infra-iac-codes: It will create an EC2 instance "t2.micro" along with all related services like:
+        a. vpc
+        b. subnet
+        c. Route
+        d. Internet gateway
+        e. EBS
+        f. EC2
+        g. Keypair
+
+    - docker: It will deploy the following service in the right order:
+        a. Deploying a docker registry into the above created EC2 machine
+        b. Push the application image into that registry
+        c. Create a container of the application and publish its port 
+
