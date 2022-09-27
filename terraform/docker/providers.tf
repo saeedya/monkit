@@ -4,6 +4,6 @@ provider "docker" {
     username = "test"
     password = "test"
   }
-  host     = "ssh://ubuntu@<ec2 instance public-ip>:22"
-  ssh_opts = ["-i", "ssh.key"]
+  host     = "ssh://ubuntu@<EC2 instance public-ip>:22"
+  ssh_opts = ["-i", "../aws/infra-iac-codes/ssh.key"]
 }
