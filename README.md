@@ -64,3 +64,5 @@ parts listed below for deploying on an AWS EC2 instace:
         a. Deploy a Docker registry into the EC2 machine (Docker)
         b. Push the application image into that registry
         c. Create a container of the application and publish its port
+
+    Directories : Terraform and Ansible
