@@ -76,10 +76,8 @@ The terraform directory contains 2 main sub-directories:
         b. Push the application image into that registry
         c. Create a container of the application and publish its port
 
-        For deploy this you need some changes:
-
-        1- Copy "ssh.key" file from last terraform deploy into "terraform/docker" folder.
-        2- open providers.tf file and insert EC2 instance public-ip --> line 7
+        For deploy this you need little change:
+            open providers.tf file and insert EC2 instance public-ip --> line 7
 
         Now execute below command:
             - terraform fmt
