@@ -5,8 +5,14 @@ from utils.now import now
 import psutil
 import os
 import subprocess
+import pyfiglet
+from termcolor import colored
 
 app = FastAPI()
+
+
+pretty_style = pyfiglet.figlet_format("M o n k i t", font = "standard")
+print(colored(pretty_style, 'green'))
 
 
 @app.get("/")
