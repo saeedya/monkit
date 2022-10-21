@@ -17,3 +17,14 @@ resource "aws_instance" "my_instance" {
     name = var.instance_name
   }
 }
+
+resource "local_file" "inventory" {
+  filename = "../../../ansible/inventory.ini"
+  content     = <<EOF
+  [all]
+  ${aws_instance.my_instance.public_ip}
+  [all:vars]
+  ansible_user=ubuntu
+  ansible_ssh_private_key_file="../terraform/aws/infra-iac-codes/ssh.key"
+  EOF
+}
