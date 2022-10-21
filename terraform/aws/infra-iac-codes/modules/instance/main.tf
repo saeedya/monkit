@@ -16,6 +16,9 @@ resource "aws_instance" "my_instance" {
   tags = {
     name = var.instance_name
   }
+  provisioner "local-exec" {
+    command = "echo ${self.public_ip}"
+  }
 }
 
 resource "local_file" "inventory" {
