@@ -48,6 +48,6 @@ resource "docker_container" "monkit_container" {
   network_mode = "host"
   ports {
     internal = 8000
-    external = 8000
+    external = 80
   }
 }
