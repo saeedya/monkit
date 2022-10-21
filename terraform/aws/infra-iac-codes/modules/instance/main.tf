@@ -28,24 +28,3 @@ resource "local_file" "inventory" {
   ansible_ssh_private_key_file="../terraform/aws/infra-iac-codes/ssh.key"
   EOF
 }
-
-resource "null_resource" "write_instance_ip_addresses" {
-
-  provisioner "file" {
-    content = <<EOF
-      #!/bin/bash
-      ip_address="$(terraform output --json | jq '.instances_public_ip.value.instance1' | cut -d '"' -f 2)"
-      hostname="instance1"
-      host_entry= "$ip_address   $hostname"
-      echo "Adding new host entry..."
-      echo "$host_entry" >> /etc/hosts
-    EOF
-      destination = "/tmp/addshost.py"
-  }
-
-  provisioner "local-exec" {
-    inline = [
-      "chmod +x /tmp/addhost.sh; bash /tmp/addhost.sh"
-    ]
-  }
-}
