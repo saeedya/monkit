@@ -1,5 +1,5 @@
 data "template_file" "remote_ip_address" {
-  template = "${file("remote_ip_address.txt")}"
+  template = "${file("/tmp/remote_ip_address.txt")}"
 }
 
 provider "docker" {
