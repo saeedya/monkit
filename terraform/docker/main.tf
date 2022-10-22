@@ -22,7 +22,6 @@ resource "docker_registry_image" "monkit" {
   name                 = "localhost:5000/monkit"
   insecure_skip_verify = true
   keep_remotely        = true
-  network_mode  = host
 
   build {
     auth_config {
@@ -31,6 +30,7 @@ resource "docker_registry_image" "monkit" {
       password  = "test"
       auth      = "test"
     }
+    network_mode = host
     context    = "../.."
     dockerfile = "Dockerfile"
   }
