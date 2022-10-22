@@ -19,9 +19,10 @@ resource "docker_image" "registry_image" {
 # Build and push monkit image into remote server
 resource "docker_registry_image" "monkit" {
   provider             = docker
-  name                 = "localhost:5000/monkit:latest"
+  name                 = "localhost:5000/monkit"
   insecure_skip_verify = true
   keep_remotely        = true
+  network_mode  = host
 
   build {
     auth_config {
