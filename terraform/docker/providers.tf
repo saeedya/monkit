@@ -8,6 +8,6 @@ provider "docker" {
     username = "test"
     password = "test"
   }
-  host     = "ssh://ubuntu@${data.template_file.remote_ip_address}:22"
+  host     = "ssh://ubuntu@${data.template_file.remote_ip_address.rendered}:22"
   ssh_opts = ["-i", "../aws/infra-iac-codes/ssh.key"]
 }
