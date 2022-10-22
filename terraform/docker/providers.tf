@@ -1,9 +1,13 @@
+data "template_file" "remote_ip_address" {
+  template = "${file("remote_ip_address.txt")}"
+}
+
 provider "docker" {
   registry_auth {
     address  = "http://localhost:5000"
     username = "test"
     password = "test"
   }
-  host     = "ssh://ubuntu@${TF_VAR_REMOTE_IP_ADDRESS}:22"
+  host     = "ssh://ubuntu@${data.template_file.remote_ip_address.rendered}:22"
   ssh_opts = ["-i", "../aws/infra-iac-codes/ssh.key"]
 }

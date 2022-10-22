@@ -17,7 +17,7 @@ resource "aws_instance" "my_instance" {
     name = var.instance_name
   }
   provisioner "local-exec" {
-    command = "export TF_VAR_REMOTE_IP_ADDRESS=${self.public_ip}"
+    command = "echo ${self.public_ip} > /tmp/remote_ip_address.txt"
   }
 }
 
