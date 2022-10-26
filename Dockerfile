@@ -1,41 +1,40 @@
 ARG     PYTHON_VERSION=slim
 
-FROM    python:${PYTHON_VERSION} AS builder
+FROM    python:${PYTHON_VERSION} AS BUILDER
 
-EXPOSE  8000/tcp
+RUN     apt-get update
 
-ENV     MONKIT_TIMEZONE=Asia/Tehran \
-        MONKIT_ENV=production    
+RUN     apt-get install -y --no-install-recommends apt-utils build-essential gcc
 
-WORKDIR /opt/app
-
-RUN apt-get update
-
-RUN apt-get install -y --no-install-recommends apt-utils build-essential gcc
-
-RUN python -m venv venv
-
+RUN python -m venv /opt/app/venv
+# Make sure we use the virtualenv:
 ENV PATH="/opt/app/venv/bin:$PATH"
+
+WORKDIR /opt/app/venv
 
 COPY    requirements.txt .
 
 RUN     pip install -U pip && pip install -r requirements.txt
 
-COPY	. .
+COPY . .
 
-ARG     PYTHON_VERSION=slim
+FROM    python:${PYTHON_VERSION} AS STARTER
 
-FROM python:${PYTHON_VERSION} AS starter
+WORKDIR /opt/app/venv/
 
-COPY --from=builder /opt/app/venv /opt/app/venv
+COPY    --from=BUILDER /opt/app/venv ./
 
-# Make sure we use the virtualenv:
-ENV PATH="/opt/app/venv/bin:$PATH"
+EXPOSE  8000/tcp
+
+ENV     MONKIT_TIMEZONE=Asia/Tehran \
+        MONKIT_ENV=production
 
 ARG 	GIT_COMMIT="nocommit"
 ARG 	GIT_TAG="notag"
 
 LABEL   gitCommit=$GIT_COMMIT   gitTag=$GIT_TAG
 
-CMD     ["uvicorn", "monkit.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Make sure we use the virtualenv:
+ENV PATH="/opt/app/venv/bin:$PATH"
 
+CMD     ["uvicorn", "monkit.main:app", "--host", "0.0.0.0", "--port", "8000"]
