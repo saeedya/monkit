@@ -20,7 +20,7 @@ resource "docker_image" "monkit" {
   name = "monkit"
   build {
     path = "../.."
-    tag  = ["127.0.0.1:5000/monkit"]
+    tag  = ["localhost:5000/monkit"]
     label = {
       author : "saeedya"
     }
@@ -28,7 +28,7 @@ resource "docker_image" "monkit" {
 }
 
 resource "docker_image" "monkit_image" {
-  name = "127.0.0.1:5000/monkit:latest"
+  name = "localhost:5000/monkit:latest"
 }
 
 # Create monkit container and published on port 8000

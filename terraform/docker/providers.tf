@@ -4,7 +4,7 @@ data "template_file" "remote_ip_address" {
 
 provider "docker" {
   registry_auth {
-    address  = "http://127.0.0.1:5000"
+    address  = "http://localhost:5000"
     username = "test"
     password = "test"
   }
