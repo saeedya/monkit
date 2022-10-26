@@ -21,11 +21,10 @@ resource "docker_registry_image" "monkit" {
   provider             = docker
   name                 = "monkit"
   insecure_skip_verify = true
-  keep_remotely        = false
 
   build {
     auth_config {
-      host_name = "localhost"
+      host_name = "localhost:5000"
       user_name = "test"
       password  = "test"
       auth      = "test"
