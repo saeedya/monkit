@@ -6,9 +6,9 @@ RUN     apt-get update
 
 RUN     apt-get install -y --no-install-recommends apt-utils build-essential gcc
 
-RUN python -m venv /opt/app/venv
+RUN     python -m venv /opt/app/venv
 # Make sure we use the virtualenv:
-ENV PATH="/opt/app/venv/bin:$PATH"
+ENV     PATH="/opt/app/venv/bin:$PATH"
 
 WORKDIR /opt/app/venv
 
@@ -35,6 +35,6 @@ ARG 	GIT_TAG="notag"
 LABEL   gitCommit=$GIT_COMMIT   gitTag=$GIT_TAG
 
 # Make sure we use the virtualenv:
-ENV PATH="/opt/app/venv/bin:$PATH"
+ENV     PATH="/opt/app/venv/bin:$PATH"
 
 CMD     ["uvicorn", "monkit.main:app", "--host", "0.0.0.0", "--port", "8000"]
