@@ -16,20 +16,31 @@ resource "docker_image" "registry" {
   name = "registry:2"
 }
 
-# Build and push monkit image into remote server
-resource "docker_registry_image" "monkit" {
-  provider             = docker
-  name                 = "monkit"
-  insecure_skip_verify = true
-
+resource "docker_image" "monkit" {
+  name = "monkit"
   build {
-    auth_config {
-      host_name = "localhost:5000"
-      user_name = "test"
-      password  = "test"
-      auth      = "test"
+    path = "../.."
+    tag  = ["localhost:5000/monkit"]
+    label = {
+      author : "saeedya"
     }
-    context    = "../.."
-    dockerfile = "Dockerfile"
+  }
+}
+
+data "docker_registry_image" "monkit" {
+  name = "localhost:5000/monkit"
+  insecure_skip_verify = true
+}
+
+# Create monkit container and published
+resource "docker_container" "monkit_container" {
+  provider     = docker
+  image        = data.docker_registry_image.monkit.name
+  name         = "monkit"
+  attach       = false
+  network_mode = "host"
+  ports {
+    internal = 8000
+    external = 8000
   }
 }
